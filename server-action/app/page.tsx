@@ -1,3 +1,4 @@
+import variables from './variables.module.scss'
 export default async function Home() {
   const res = await fetch("https://64e4523bc5556380291302c7.mockapi.io/Products", { cache: "no-cache" });
   const products: Product[] = await res.json();
@@ -27,6 +28,9 @@ export default async function Home() {
             </div>
           );
         })}
+      </div>
+      <div className="div">
+      <h1 style={{ color: variables.primaryColor , backgroundColor: variables.backgroundColor}}>Hello, Next.js!</h1>
       </div>
     </main>
   );
