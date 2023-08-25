@@ -8,7 +8,7 @@ export default function Search() {
     const router = useRouter()
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // setSearch('')
+        setSearch('')
         router.push(`/${search}`)
     }
     
