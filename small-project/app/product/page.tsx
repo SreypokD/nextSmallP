@@ -4,10 +4,10 @@ import React, { useState, useEffect, FormEventHandler } from 'react';
 import { getProducts } from '@/lib/getProducts';
 import addNewProduct from '@/lib/addNewProduct';
 
-export default  function ProductList() {
+export default function ProductList() {
   const [products, setProducts] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
 
   useEffect(() => {
@@ -28,46 +28,61 @@ export default  function ProductList() {
 
 
   // setting on edit product ===============
-  const handleEditButtonClick=() =>{
+  const handleEditButtonClick = () => {
     setShowEditModal(true)
   }
-  const handleCloseEditDialog=() =>{
+  const handleCloseEditDialog = () => {
     setShowEditModal(false)
   }
 
   // to add new product =========
   const [newProduct, setNewProduct] = useState('')
-  const [newPrice , setNewPrice] = useState('')
- // to edit product====================
- const [productToEdit , setProductToEdit] = useState('')
- const [priceToEdit, setPriceToEdit]  = useState('')
+  const [newPrice, setNewPrice] = useState('')
+
+  
+  // to edit product====================
+  const [productToEdit, setProductToEdit] = useState('');
+  const [priceToEdit, setPriceToEdit] = useState('');
 
 
   const handleSaveProduct: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-  
+
     // Create a new product object
     const newProductObject = {
       product: newProduct,
       price: newPrice,
       id: 0,
     };
-  
+
+
+
     // Add the new product to your list of products
     addNewProduct(newProductObject);
-  
+
     // Clear the input fields
     setNewProduct('');
     setNewPrice('');
-  
+
     // Close the dialog
     handleCloseDiglog();
-  
+
     // Auto-refresh after 1 second
     setTimeout(() => {
       window.location.reload();
-    }, 100);
+    }, 1000);
   };
+
+  //to submit edit page 
+  const handleSaveEditProduct = () => {
+    //continue to when we click on edit button
+  }
+
+
+
+
+
+
   return (
     <div className="p-4 sm:ml-64">
       <div className="p-6  border-2 border-gray-400  rounded">
@@ -123,29 +138,29 @@ export default  function ProductList() {
                 <form className="space-y-6" onSubmit={handleSaveProduct}>
                   <div>
                     <label htmlFor="product" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product name</label>
-                    <input type="text" 
-                    name="product-name" 
-                    id="product-name" 
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg f
+                    <input type="text"
+                      name="product-name"
+                      id="product-name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg f
                     ocus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 
-                    dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                    placeholder="add product name"
-                    value={newProduct}
-                    onChange={e=>setNewProduct(e.target.value)}
-                     required />
+                    dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                      placeholder="add product name"
+                      value={newProduct}
+                      onChange={e => setNewProduct(e.target.value)}
+                      required />
                   </div>
                   <div>
                     <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                    <input type="text" 
-                    name="prict" 
-                    id="prict" 
-                    placeholder="•••$" 
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                    <input type="text"
+                      name="prict"
+                      id="prict"
+                      placeholder="•••$"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 
-                    dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                    value={newPrice}
-                    onChange={e=>setNewPrice(e.target.value)}
-                    required />
+                    dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                      value={newPrice}
+                      onChange={e => setNewPrice(e.target.value)}
+                      required />
                   </div>
                   <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save Product</button>
                 </form>
@@ -166,32 +181,32 @@ export default  function ProductList() {
               </button>
               <div className="px-6 py-6 lg:px-8">
                 <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">To Edit product</h3>
-                <form className="space-y-6" onSubmit={handleSaveProduct}>
+                <form className="space-y-6" onSubmit={handleSaveEditProduct}>
                   <div>
                     <label htmlFor="product" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product name</label>
-                    <input type="text" 
-                    name="product-name" 
-                    id="product-name" 
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg f
-                    ocus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 
-                    dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                    placeholder="add product name"
-                    value={productToEdit}
-                    onChange={e=>setProductToEdit(e.target.value)}
-                     required />
+                    <input
+                      type="text"
+                      name="product-name"
+                      id="product-name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                      placeholder="add product name"
+                      value={productToEdit}
+                      onChange={(e) => setProductToEdit(e.target.value)}
+                      required
+                    />
                   </div>
                   <div>
                     <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                    <input type="text" 
-                    name="prict" 
-                    id="prict" 
-                    placeholder="•••$" 
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
-                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 
-                    dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                    value={priceToEdit}
-                    onChange={e=>setPriceToEdit(e.target.value)}
-                    required />
+                    <input
+                      type="text"
+                      name="price"
+                      id="price"
+                      placeholder="•••"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                      value={priceToEdit}
+                      onChange={(e) => setPriceToEdit(e.target.value)}
+                      required
+                    />
                   </div>
                   <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save Edit Product</button>
                 </form>
