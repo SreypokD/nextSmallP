@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState, useEffect, FormEventHandler } from 'react';
 import { getProducts } from '@/lib/getProducts';
 import addNewProduct from '@/lib/addNewProduct';
@@ -77,9 +76,6 @@ export default function ProductList() {
   const handleSaveEditProduct = () => {
     //continue to when we click on edit button
   }
-
-
-
 
 
 

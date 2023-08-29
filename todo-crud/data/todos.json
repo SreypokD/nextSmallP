@@ -2,11 +2,7 @@
   "tasks": [
     {
       "id": 1,
-      "taskname": "Do homework"
-    },
-    {
-      "id": "0adde281-bcfe-4ce4-b6a9-f8fc704f5480",
-      "taskname": "Sleep"
+      "taskname": "Do homework nextJS"
     },
     {
       "id": "c6fe8f42-8c63-4dd9-b977-aab3c094bbc0",
@@ -15,6 +11,10 @@
     {
       "id": "d945936b-f264-4e1c-9303-23b2d1631bc9",
       "taskname": "call with boy friend"
+    },
+    {
+      "id": "1fabcf44-9cbf-47e9-88c4-227cd4f8bd78",
+      "taskname": "Computer desk"
     }
   ]
 }
