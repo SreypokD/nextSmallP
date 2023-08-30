@@ -29,12 +29,7 @@ export const options: NextAuthOptions = {
                    return null
                 }
             }
-            // authorize: function (credentials: Record<"username", string> | undefined, req: Pick<RequestInternal, "headers" | "body" | "query" | "method">): Awaitable<User | null> {
-            //     throw new Error("Function not implemented.");
-            // }
         })
     ],
-    // pages:{
-    //     signIn
-    // }
+   
 }
